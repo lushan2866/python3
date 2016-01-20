@@ -14,9 +14,9 @@ url = url_1+queue[0]
 while queue:
     the_num = queue.popleft()
     #print(the_num) #test
-    the_url = url_1+the_num
-    print(the_url)
-    try:
+    the_url = url_1+the_num #将找到数字加入到下一步要打开的网址里
+    print(the_url) #打印测试
+    try: #尝试抓取，如果错误则赞同3s重试
       data = urllib.request.urlopen(the_url).read()
     except:
       time.sleep(3)
