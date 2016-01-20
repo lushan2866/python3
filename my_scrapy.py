@@ -1,6 +1,7 @@
 import re
 import urllib.request
 import urllib
+import time
 from collections import deque
 #定义一些变量
 queue = deque(' ') #将要爬的网址序列的编号
@@ -15,7 +16,12 @@ while queue:
     #print(the_num) #test
     the_url = url_1+the_num
     print(the_url)
-    data = urllib.request.urlopen(the_url).read()
+    try:
+      data = urllib.request.urlopen(the_url).read()
+    except:
+      time.sleep(3)
+      data = urllib.request.urlopen(the_url).read()
+
     data= data.decode('utf-8')
     #print(data)
     linkre = re.compile('\d{5}') #正则表达式
