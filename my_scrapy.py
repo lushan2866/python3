@@ -1,3 +1,4 @@
+########爬虫闯关第一关#########
 import re
 import urllib.request
 import urllib
@@ -18,10 +19,11 @@ while queue:
     the_url = url_1+the_num #将找到数字加入到下一步要打开的网址里
     #print(the_url) #打印测试
     try: #尝试抓取，如果错误则暂停3s重试
+      print('正在尝试抓取')
       data = urllib.request.urlopen(the_url).read()
-    except:
-      time.sleep(3)
-      #print(e)
+    except Exception as e:
+      #time.sleep(3)
+      print(e)
       data = urllib.request.urlopen(the_url).read()
 
     data= data.decode('utf-8')
@@ -32,3 +34,4 @@ while queue:
     s=s+1
     print('第'+str(s)+'关的数字'+x)
     queue.append(x)
+
