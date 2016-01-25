@@ -57,7 +57,8 @@ def get_the_key(x):
     return strlist[0]
 #
 for password in range(1,30):
-    print('正在尝试密码为'+str(password)+'的登录')
+    print('''##################################
+    正在尝试密码为'+str(password)+'的登录''')
     id = 'ls'
 
     #构造Post数据，他也是从抓大的包里分析得出的。
