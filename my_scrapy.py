@@ -22,8 +22,9 @@ while queue:
       print('正在尝试抓取')
       data = urllib.request.urlopen(the_url).read()
     except Exception as e:
-      #time.sleep(3)
       print(e)
+      print("抓取错误，再次尝试")
+      time.sleep(3)
       data = urllib.request.urlopen(the_url).read()
 
     data= data.decode('utf-8')
