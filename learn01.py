@@ -1,3 +1,4 @@
+########如何读取一个网址的内容#########
 import urllib
 import urllib.request
 
@@ -12,4 +13,3 @@ data= data.decode('utf-8')
 print(data)
 
 
-########如何读取一个网址的内容#########
