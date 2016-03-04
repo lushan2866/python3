@@ -1,3 +1,5 @@
+#编程目标：按照一定关键字对智联的岗位进行分析，量化。
+
 __author__ = 'Ls'
 # -*- coding:utf-8 -*-
 import urllib,urllib.request,urllib.parse,re,time
@@ -28,6 +30,7 @@ def find_out(the_read_url):
          job_url.append(x)
          print('加入队列 --->  ' + x)
 
+#######利用正则表达式获取职位名称、职位信息等######
 def find_job():
 
 find_out(read_html(sou_url))
