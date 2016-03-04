@@ -31,10 +31,11 @@ def find_out(the_read_url):
          print('加入队列 --->  ' + x)
 
 #######利用正则表达式获取职位名称、职位信息等######
-def find_job():
+def find_job(url):
+    linkre=re.compile('(?<=<h1>).*?(?=</h1>)')# 正则表达式，需要每次不同时候都调整
+    job_name =linkre.findall(url)
+    return job_name
 
-find_out(read_html(sou_url))
-print(job_url)
+test_url= 'http://jobs.zhaopin.com/120019970286594.htm'
 
-
-
+print(find_job(read_html(test_url)))
