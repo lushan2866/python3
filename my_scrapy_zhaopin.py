@@ -31,11 +31,29 @@ def find_out(the_read_url):
          print('加入队列 --->  ' + x)
 
 #######利用正则表达式获取职位名称、职位信息等######
-def find_job(url):
-    linkre=re.compile('(?<=<h1>).*?(?=</h1>)')# 正则表达式，需要每次不同时候都调整
-    job_name =linkre.findall(url)
-    return job_name
+def find_job(url_context):
+    linkre1=re.compile('(?<=<h1>).*?(?=</h1>)')# 正则表达式，需要每次不同时候都调整，此次是职位名称
+    linkre2=re.compile('(?<=<li><span>职位月薪：</span><strong>).*?(?=</strong></li>)')# 正则表达式，需要每次不同时候都调整，此次是职位月薪
+    linkre3=re.compile('(?<=<li><span>工作经验：</span><strong>).*?(?=</strong></li>)')# 正则表达式，需要每次不同时候都调整，此次是工作经验
+    linkre4=re.compile('(?<=<li><span>最低学历：</span><strong>).*?(?=</strong></li>)')# 正则表达式，需要每次不同时候都调整，此次是最低学历
+    linkre5=re.compile('''(?<=<!-- SWSStringCutStart -->
+                       ).*?(?=
+                        <!-- SWSStringCutEnd -->)''') #正则表达式，需要每次不同时候都调整，此次是职位描述
+    linkre6=re.compile('(?<=var Str_CompName = ").*?(?=")')# 正则表达式，需要每次不同时候都调整，此次是公司名称
+    linkre7=re.compile('(?<=<link rel="canonical" href=")http://jobs.zhaopin.com/.*?.htm(?=")') #正则表达式，需要每次不同时候都调整，此次是岗位链接
+    job_name =linkre1.findall(url_context)
+    the_salary = linkre2.findall(url_context)
+    the_work_ex=linkre3.findall(url_context)
+    the_edu=linkre4.findall(url_context)
+    the_job_ifo=linkre5.findall(url_context)
+    the_company=linkre6.findall(url_context)
+    the_job_url=linkre7.findall(url_context)
+    return (job_name,the_salary,the_work_ex,the_edu,the_job_ifo,the_company,the_job_url)
 
-test_url= 'http://jobs.zhaopin.com/120019970286594.htm'
+test_url= 'http://jobs.zhaopin.com/144793568250001.htm'
 
 print(find_job(read_html(test_url)))
+
+#import sqlite3
+
+#conn = sqlite3.connect('test.db')
