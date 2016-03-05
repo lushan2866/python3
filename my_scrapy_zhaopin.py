@@ -2,7 +2,7 @@
 
 __author__ = 'Ls'
 # -*- coding:utf-8 -*-
-import urllib,urllib.request,urllib.parse,re,time
+import urllib,urllib.request,urllib.parse,re,time,xlwt
 page= '1'
 sou_url = 'http://sou.zhaopin.com/jobs/searchresult.ashx?jl=%E5%8C%97%E4%BA%AC&kw=%E7%BC%96%E8%BE%91&p='+page+'&isadv=0'
 visited=[]
@@ -49,6 +49,13 @@ def find_job(url_context):
     the_company=linkre6.findall(url_context)
     the_job_url=linkre7.findall(url_context)
     return (job_name,the_salary,the_work_ex,the_edu,the_job_ifo,the_company,the_job_url)
+
+def writeXLS():
+    xls = xlwt.Workbook('data.xls')
+    job_all = xls.add_sheet('job_all')
+    for x in range(len(a)):
+        job_all.write(0,x,a[x])
+    xls.save('data.xls')
 
 test_url= 'http://jobs.zhaopin.com/144793568250001.htm'
 
